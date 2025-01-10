@@ -50,6 +50,7 @@ export function CommunityPostDetailPage() {
   useEffect(() => {
     // 이즐리 api로부터 게시글 데이터를 받아옵니다.
     const response = await fetch("{api_url}/posts/123");
+
     const data = await response.json();
     setContent(data.content);
   }, []);
