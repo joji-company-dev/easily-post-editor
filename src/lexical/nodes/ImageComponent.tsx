@@ -1,9 +1,3 @@
-import { useHotKeyOSCompatible } from "@/modules/common/hooks/useHotKeyOSCompatible";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/modules/common/shadcn/ui/dialog";
 import type { LexicalEditor, NodeKey } from "lexical";
 import { AlignCenterIcon, AlignLeftIcon, AlignRightIcon } from "lucide-react";
 import { overlay } from "overlay-kit";
@@ -11,6 +5,8 @@ import { Resizable } from "re-resizable";
 
 import * as React from "react";
 import { Suspense, useRef, useState } from "react";
+import { useHotKeyOSCompatible } from "../../utils/useHotKeyOSCompatible";
+import { Dialog, DialogContent, DialogTitle } from "../../shadcn/dialog";
 
 const imageCache = new Set();
 
@@ -53,7 +49,7 @@ function LazyImage({
   onAlign: (align: "start" | "center" | "end") => void;
   onBreakLine: () => void;
   align: "start" | "center" | "end";
-}): JSX.Element {
+}): React.JSX.Element {
   useSuspenseImage(src);
 
   useHotKeyOSCompatible(
@@ -223,7 +219,7 @@ export default function ImageComponent({
   onDelete: () => void;
   onAlign: (align: "start" | "center" | "end") => void;
   onBreakLine: () => void;
-}): JSX.Element {
+}): React.JSX.Element {
   const [isSelected, setIsSelected] = useState(false);
   const imageRef = useRef<null | HTMLImageElement>(null);
 
