@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "dev": "vite",
+    "dev": "vite test-app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "pnpm build && pnpm publish --access public"
   },

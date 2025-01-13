@@ -7,4 +7,5 @@ export default defineConfig({
   minify: true,
   dts: true,
   clean: true,
+  injectStyle: true,
 });

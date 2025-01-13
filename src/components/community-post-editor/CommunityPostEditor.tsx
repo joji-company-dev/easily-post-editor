@@ -20,12 +20,13 @@ import { AutoLinkPlugin } from "@lexical/react/LexicalAutoLinkPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { EditorRefPlugin } from "@lexical/react/LexicalEditorRefPlugin";
 import ToolbarPlugin from "./ToolbarPlugin";
-import "./style.css";
 import { EditorState, LexicalEditor } from "lexical";
 import { forwardRef } from "react";
 import { ImageNode } from "../../lexical/nodes/ImageNode";
 import ImagesPlugin from "../../lexical/plugins/ImagePlugin";
 import { cn } from "../../utils/cn";
+
+import "./style.css";
 
 const theme = {
   // Theme styling goes here
@@ -49,6 +50,10 @@ export interface CommunityPostEditorProps {
    */
   isReadOnly?: boolean;
   /**
+   * @description 컴포넌트 컨테이너에 적용할 클래스 이름입니다.
+   */
+  containerClassName?: string;
+  /**
    * @description 게시글 내용이 변경될 때 호출되는 함수입니다. isReadOnly가 true일 때는 불필요합니다.
    */
   onChange?: (editorState: EditorState) => void;
@@ -63,7 +68,13 @@ export const CommunityPostEditor = forwardRef<
   CommunityPostEditorProps
 >(
   (
-    { isReadOnly = false, initialContent, onChange = () => {}, onUploadImage },
+    {
+      isReadOnly = false,
+      initialContent,
+      onChange = () => {},
+      onUploadImage,
+      containerClassName: className,
+    },
     ref
   ) => {
     const initialConfig: InitialConfigType = {
@@ -100,7 +111,8 @@ export const CommunityPostEditor = forwardRef<
         <div
           className={cn(
             "editor-container w-full border flex-1 flex flex-col",
-            isReadOnly && "readonly"
+            isReadOnly && "readonly",
+            className
           )}
         >
           {!isReadOnly && <ToolbarPlugin onUploadImage={onUploadImage} />}
